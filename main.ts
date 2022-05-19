@@ -1,11 +1,5 @@
 input.onButtonPressed(Button.A, function () {
-    for (let i = 0; i <= 255; i++) {
-        for (let j = 0; j <= 255; j++) {
-            for (let k = 0; k <= 255; k++) {
-                strip.showColor(neopixel.rgb(i, j, k))
-            }
-        }
-    }
+	
 })
 input.onButtonPressed(Button.AB, function () {
     strip.clear()
@@ -20,7 +14,13 @@ input.onButtonPressed(Button.B, function () {
 })
 let strip: neopixel.Strip = null
 strip = neopixel.create(DigitalPin.P0, 30, NeoPixelMode.RGB)
-strip.setBrightness(10)
+strip.setBrightness(255)
 basic.forever(function () {
-	
+    strip.showColor(neopixel.hsl(pins.map(
+    pins.analogReadPin(AnalogPin.P1),
+    0,
+    1000,
+    0,
+    255
+    ), 255, 255))
 })
